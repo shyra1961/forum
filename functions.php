@@ -237,6 +237,7 @@ function generate_scripts() {
 	endif;
 	wp_enqueue_style( 'superfish', get_template_directory_uri() . '/css/superfish.css', false, GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'fontawesome', get_template_directory_uri() . '/css/font-awesome.min.css' );
+	wp_enqueue_style( 'boddypress-custom', get_template_directory_uri() . '/css/buddypress-custom.css', false, GENERATE_VERSION, 'all' );
 
 	// Generate scripts
 	wp_enqueue_script( 'generate-navigation', get_template_directory_uri() . '/js/navigation.js', array(), GENERATE_VERSION, true );
