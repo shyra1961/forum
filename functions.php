@@ -94,7 +94,7 @@ function generate_get_defaults()
 		'single_layout_setting' => 'right-sidebar',
 		'post_content' => 'full',
 		'footer_layout_setting' => 'fluid-footer',
-		'footer_widget_setting' => '3',
+		'footer_widget_setting' => '0',
 		'background_color' => '#efefef',
 		'text_color' => '#3a3a3a',
 		'link_color' => '#1e73be',
