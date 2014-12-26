@@ -1,4 +1,5 @@
-#signup_submit {
+#signup_submit,
+#buddypress .button{
 	font-size: 16px!important;
 	text-transform: uppercase;
 }
