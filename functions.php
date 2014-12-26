@@ -20,3 +20,12 @@ function forum_scripts() {
 
 	// Forum scripts
 }
+
+/**
+ * Set default options
+ */
+add_filter( 'generate_option_defaults', 'set_forum_defaults', 10, 1 );
+function set_forum_defaults( $options ) {
+	$options['footer_widget_setting'] = '0';
+	return apply_filters( 'forum_defaults', $options );
+}
