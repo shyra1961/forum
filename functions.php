@@ -29,3 +29,12 @@ function set_forum_defaults( $options ) {
 	$options['footer_widget_setting'] = '0';
 	return apply_filters( 'forum_defaults', $options );
 }
+
+/**
+* Выводит код div-а с кнопками uLogin
+*/
+add_action( 'bp_before_account_details_fields', 'forum_ulogin_panel', 10, 0 );
+function forum_ulogin_panel() {
+	echo get_ulogin_panel( 0, true, true ); 
+}
+
