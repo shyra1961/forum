@@ -9,4 +9,4 @@
 * Плагины:
   *  [BuddyPress](https://buddypress.org/)
   *  [bbPress](https://bbpress.org/)
-  *  [BuddyPress Toolbar](https://wordpress.org/plugins/buddypress-toolbar/)
+  *  [uLogin - виджет авторизации через социальные сети](https://wordpress.org/plugins/ulogin/)
