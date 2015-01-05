@@ -47,4 +47,18 @@ function remove_admin_bar_links() {
     }
 add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
 
+/**
+ * Добавляем поле "сайт" в списке пользователей в админпанеле
+ */
+add_filter( 'manage_users_columns', 'show_user_url_column' );
+add_action( 'manage_users_custom_column',  'show_user_url_column_content', 10, 3 );
+function show_user_url_column( $columns ) {
+    $columns['user_url'] = __( 'Сайт', 'forum' );
+    return $columns;
+}
+function show_user_url_column_content( $value, $column_name, $user_id ) {
+    if ( 'user_url' == $column_name )
+        return get_user_meta( $user_id, 'user_url', true );
+    return $value;
+}
 
