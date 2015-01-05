@@ -38,3 +38,12 @@ function forum_ulogin_panel() {
 	echo get_ulogin_panel( 0, true, true ); 
 }
 
+/**
+* Remove logo WP in adminbar
+*/
+function remove_admin_bar_links() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('wp-logo');
+    }
+add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
+
