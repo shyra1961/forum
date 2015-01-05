@@ -31,19 +31,20 @@ function set_forum_defaults( $options ) {
 }
 
 /**
-* Выводит код div-а с кнопками uLogin
-*/
+ * Выводит код div-а с кнопками uLogin
+ */
 add_action( 'bp_before_account_details_fields', 'forum_ulogin_panel', 10, 0 );
 function forum_ulogin_panel() {
 	echo get_ulogin_panel( 0, true, true ); 
 }
 
 /**
-* Remove logo WP in adminbar
-*/
+ * Remove logo WP in adminbar
+ */
 function remove_admin_bar_links() {
     global $wp_admin_bar;
     $wp_admin_bar->remove_menu('wp-logo');
     }
 add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
+
 
