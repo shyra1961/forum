@@ -1,0 +1,7 @@
+.entry-header ~ .entry-content {
+	margin: 2em 0px 0px;
+}
+
+.entry-content {
+	margin: 0;
+}
