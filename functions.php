@@ -62,3 +62,13 @@ function show_user_url_column_content( $value, $column_name, $user_id ) {
     return $value;
 }
 
+/**
+ * Add favicon
+ */
+
+function forum_favicon() {
+	echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.get_bloginfo('stylesheet_directory').'/assets/img/favicon.png" />';
+}
+add_action('wp_head', 'forum_favicon');
+
+
