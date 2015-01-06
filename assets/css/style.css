@@ -7,6 +7,6 @@
 }
 
 /* Cсылки "войти" и "авторизация" вправо */ 
-#wp-admin-bar-root-default.ab-top-menu {
+.logged-no #wp-admin-bar-root-default.ab-top-menu {
 	float: right;
 } 

@@ -42,6 +42,7 @@ function set_forum_defaults( $options ) {
 	$options['layout_setting'] = 'no-sidebar';
 	$options['blog_layout_setting'] = 'no-sidebar';
 	$options['single_layout_setting'] = 'no-sidebar';
+
 	return apply_filters( 'forum_defaults', $options );
 }
 
@@ -86,4 +87,15 @@ function forum_favicon() {
 }
 add_action('wp_head', 'forum_favicon');
 
+/**
+ * Добавляем class not-login
+ */
+add_filter('body_class','css_class_logged_no');
+function css_class_logged_no($classes) {
+	if ( !is_user_logged_in() ) { 
+		$classes[] = 'logged-no'; 
+	}
+	
+	return $classes;
+}
 
