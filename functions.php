@@ -27,6 +27,7 @@ function forum_scripts() {
 add_filter( 'generate_option_defaults', 'set_forum_defaults', 10, 1 );
 function set_forum_defaults( $options ) {
 	$options['footer_widget_setting'] = '0';
+	$options['nav_position_setting'] = null;
 	return apply_filters( 'forum_defaults', $options );
 }
 
