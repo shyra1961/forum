@@ -57,11 +57,15 @@ function forum_ulogin_panel() {
 /**
  * Remove logo WP in adminbar
  */
+add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
 function remove_admin_bar_links() {
     global $wp_admin_bar;
     $wp_admin_bar->remove_menu('wp-logo');
-    }
-add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
+
+    if ( !is_admin() ) {
+    	$wp_admin_bar->remove_menu('site-name');
+	}
+}
 
 /**
  * Добавляем поле "сайт" в списке пользователей в админпанеле
@@ -95,7 +99,7 @@ function css_class_logged_no($classes) {
 	if ( !is_user_logged_in() ) { 
 		$classes[] = 'logged-no'; 
 	}
-	
+
 	return $classes;
 }
 
