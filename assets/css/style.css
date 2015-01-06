@@ -5,3 +5,8 @@
 .entry-content {
 	margin: 0;
 }
+
+/* Отправляем ссылки "войти" и "авторизация" вправо */ 
+#wp-admin-bar-root-default.ab-top-menu {
+	float: right;
+} 
