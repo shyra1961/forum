@@ -15,7 +15,7 @@ define( 'FORUM_DIR', get_template_directory() );
 add_action( 'wp_enqueue_scripts', 'forum_scripts' );
 function forum_scripts() {
 	// Forum stylesheets
-	wp_enqueue_style( 'forum-buddypress-custom-style', FORUM_URI . '/css/buddypress-custom.css', false, FORUM_VERSION );
+	wp_enqueue_style( 'forum-buddypress-custom-style', FORUM_URI . '/assets/css/buddypress-custom.css', false, FORUM_VERSION );
 
 
 	// Forum scripts
