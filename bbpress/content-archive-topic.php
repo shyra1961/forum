@@ -29,11 +29,11 @@
 
 	<?php if ( bbp_has_topics() ) : ?>
 
-		<?php bbp_get_template_part( 'pagination', 'topics'    ); ?>
+		<?php //bbp_get_template_part( 'pagination', 'topics'    ); ?>
 
 		<?php bbp_get_template_part( 'loop',       'topics'    ); ?>
 
-		<?php bbp_get_template_part( 'pagination', 'topics'    ); ?>
+		<?php //bbp_get_template_part( 'pagination', 'topics'    ); ?>
 
 	<?php else : ?>
 
