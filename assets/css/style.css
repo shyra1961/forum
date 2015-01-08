@@ -11,8 +11,12 @@
 	float: right;
 } 
 
-.forum-titles li{
+.forum-titles li {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+#subscription-toggle {
+	float: right;
 }
