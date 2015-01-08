@@ -10,3 +10,9 @@
 .logged-no #wp-admin-bar-root-default.ab-top-menu {
 	float: right;
 } 
+
+.forum-titles li{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
