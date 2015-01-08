@@ -23,8 +23,6 @@
 
 	<?php else : ?>
 
-		<?php bbp_single_forum_description(); ?>
-
 		<?php if ( bbp_has_forums() ) : ?>
 
 			<?php bbp_get_template_part( 'loop', 'forums' ); ?>
@@ -48,6 +46,8 @@
 			<?php bbp_get_template_part( 'form',       'topic'     ); ?>
 
 		<?php endif; ?>
+
+		<?php bbp_single_forum_description(); ?>
 
 	<?php endif; ?>
 
