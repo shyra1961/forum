@@ -10,16 +10,27 @@ define( 'FORUM_URI', get_stylesheet_directory_uri() );
 define( 'FORUM_DIR', get_template_directory() );
 
 /**
- * Enqueue scripts and styles
+ * Подключаем стили после того, как загрузится родительская тема,
+ * иначе подгрузка стилей/скриптов работающих в зависимости от 
+ * родительской темы не работает.
  */
-add_action( 'wp_enqueue_scripts', 'forum_scripts' );
-function forum_scripts() {
-	// Forum stylesheets
-	wp_enqueue_style( 'forum-buddypress-custom-style', FORUM_URI . '/css/buddypress-custom.css', false, FORUM_VERSION );
+add_action ('init', 'child_theme_enqueue_scripts' );
+function child_theme_enqueue_scripts () {
+
+	/**
+	 * Enqueue scripts and styles
+	 */
+	add_action( 'wp_enqueue_scripts', 'forum_scripts' );
+	function forum_scripts() {
+		// Forum stylesheets
+		wp_enqueue_style( 'forum-buddypress-custom-style', FORUM_URI . '/assets/css/buddypress-custom.css', 'generate-child-css', FORUM_VERSION );
+		wp_enqueue_style( 'forum-style', FORUM_URI . '/assets/css/style.css', 'generate-child-css', FORUM_VERSION );
 
 
-	// Forum scripts
+		// Forum scripts
+	}
 }
+
 
 /**
  * Set default options
@@ -27,14 +38,68 @@ function forum_scripts() {
 add_filter( 'generate_option_defaults', 'set_forum_defaults', 10, 1 );
 function set_forum_defaults( $options ) {
 	$options['footer_widget_setting'] = '0';
+	$options['nav_position_setting'] = null;
+	$options['layout_setting'] = 'no-sidebar';
+	$options['blog_layout_setting'] = 'no-sidebar';
+	$options['single_layout_setting'] = 'no-sidebar';
+
 	return apply_filters( 'forum_defaults', $options );
 }
 
 /**
-* Выводит код div-а с кнопками uLogin
-*/
+ * Выводит код div-а с кнопками uLogin
+ */
 add_action( 'bp_before_account_details_fields', 'forum_ulogin_panel', 10, 0 );
 function forum_ulogin_panel() {
 	echo get_ulogin_panel( 0, true, true ); 
+}
+
+/**
+ * Remove logo WP in adminbar
+ */
+add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
+function remove_admin_bar_links() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('wp-logo');
+
+    if ( !is_admin() ) {
+    	$wp_admin_bar->remove_menu('site-name');
+	}
+}
+
+/**
+ * Добавляем поле "сайт" в списке пользователей в админпанеле
+ */
+add_filter( 'manage_users_columns', 'show_user_url_column' );
+add_action( 'manage_users_custom_column',  'show_user_url_column_content', 10, 3 );
+function show_user_url_column( $columns ) {
+    $columns['user_url'] = __( 'Сайт', 'forum' );
+    return $columns;
+}
+function show_user_url_column_content( $value, $column_name, $user_id ) {
+    if ( 'user_url' == $column_name )
+        return get_user_meta( $user_id, 'user_url', true );
+    return $value;
+}
+
+/**
+ * Add favicon
+ */
+
+function forum_favicon() {
+	echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.get_bloginfo('stylesheet_directory').'/assets/img/favicon.png" />';
+}
+add_action('wp_head', 'forum_favicon');
+
+/**
+ * Добавляем class not-login
+ */
+add_filter('body_class','css_class_logged_no');
+function css_class_logged_no($classes) {
+	if ( !is_user_logged_in() ) { 
+		$classes[] = 'logged-no'; 
+	}
+
+	return $classes;
 }
 

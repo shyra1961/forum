@@ -1,8 +1,8 @@
-<?php
+<?php 
 /**
- * Template name: Forum Template
+ *  Template Name: Forum Template
  *
- * @package Generate
+ * @package Forum
  */
 
 get_header(); ?>
@@ -12,7 +12,7 @@ get_header(); ?>
 			<?php do_action('generate_before_main_content'); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php get_template_part( 'content', 'page' ); ?>
+				<?php get_template_part( 'content', 'forum' ); ?>
 
 			<?php endwhile; // end of the loop. ?>
 			<?php do_action('generate_after_main_content'); ?>
