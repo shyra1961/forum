@@ -11,9 +11,11 @@
 
 <div id="bbpress-forums">
 
-	<?php bbp_breadcrumb(); ?>
-
-	<?php bbp_forum_subscription_link(); ?>
+	<div class="cf">
+		<?php bbp_breadcrumb(); ?>
+		
+		<?php bbp_forum_subscription_link(); ?>
+	</div>
 
 	<?php do_action( 'bbp_template_before_single_forum' ); ?>
 
@@ -30,6 +32,8 @@
 		<?php endif; ?>
 
 		<?php if ( !bbp_is_forum_category() && bbp_has_topics() ) : ?>
+
+			<?php do_action( 'forum_button_create_topic' ); ?>
 
 			<?php //bbp_get_template_part( 'pagination', 'topics'    ); ?>
 

@@ -20,3 +20,25 @@
 #subscription-toggle {
 	float: right;
 }
+
+.btn {
+	display: inline-block;
+}
+
+.btn.btn-create-topic {
+	border: 1px solid #CEE1EF;
+	background-color: #F0F8FF;
+	text-transform: uppercase;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+}
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
