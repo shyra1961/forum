@@ -126,3 +126,13 @@ function forum_get_button_create_topic() {
 	return $btn;
 }
 
+/**
+ * Убрает лого WP со страницы входа
+ */
+function forum_remove_login_logo(){
+	echo '<style type="text/css">
+	h1 a { display: none !important; }
+	</style>';
+}
+add_action('login_head', 'forum_remove_login_logo');
+
