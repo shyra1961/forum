@@ -117,7 +117,9 @@ function css_class_logged_no($classes) {
  */
 add_action( 'forum_button_create_topic', 'forum_button_create_topic' );
 function forum_button_create_topic() {
-	echo forum_get_button_create_topic();
+	if ( is_user_logged_in() ) {
+		echo forum_get_button_create_topic();
+	}
 }
 function forum_get_button_create_topic() {
 	$btn = "<a class='btn btn-create-topic' href='#new-post' title=''>".sprintf( __( 'Create New Topic in &ldquo;%s&rdquo;', 'bbpress' ), bbp_get_forum_title() )."</a>";
