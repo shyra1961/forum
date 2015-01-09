@@ -70,6 +70,7 @@ add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
 function remove_admin_bar_links() {
     global $wp_admin_bar;
     $wp_admin_bar->remove_menu('wp-logo');
+    $wp_admin_bar->remove_menu('user-actions');
 
     if ( !is_admin() ) {
     	$wp_admin_bar->remove_menu('site-name');
@@ -135,4 +136,21 @@ function forum_remove_login_logo(){
 	</style>';
 }
 add_action('login_head', 'forum_remove_login_logo');
+
+/**
+ * Добавляет кнопку "выйти" в админбар
+ */
+add_action( 'admin_bar_menu', 'forum_toolbar_link', 999 );
+function forum_toolbar_link( $wp_admin_bar ) {
+	if ( is_user_logged_in() ) {
+		$args = array(
+			'id'    => 'forum_logout',
+			'title' => 'Выйти',
+			'href'  => wp_logout_url( get_permalink() ),
+			'parent' => 'my-account-buddypress',
+			'meta'  => array( 'class' => 'my-toolbar-page' )
+		);
+		$wp_admin_bar->add_node( $args );
+	}
+}
 
