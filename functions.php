@@ -154,3 +154,11 @@ function forum_toolbar_link( $wp_admin_bar ) {
 	}
 }
 
+/**
+ * Ссылка профиль в админке изменяется 
+ * на ссылку на профиль в  bbpress
+ */
+add_filter( 'edit_profile_url', 'forum_edit_profile_url', 10, 2 );
+function forum_edit_profile_url( $url, $user_id ) {
+	return bbp_get_user_profile_url( $user_id );
+}
