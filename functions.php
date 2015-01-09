@@ -87,7 +87,7 @@ function show_user_url_column( $columns ) {
 }
 function show_user_url_column_content( $value, $column_name, $user_id ) {
     if ( 'user_url' == $column_name )
-        return get_user_meta( $user_id, 'user_url', true );
+        return get_user_by( 'id', $user_id )->user_url;
     return $value;
 }
 
