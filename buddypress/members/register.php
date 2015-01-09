@@ -56,14 +56,24 @@
 
 				<?php do_action( 'bp_before_signup_profile_fields' ); ?>
 
-				<div class="register-section" id="profile-details-section">
+				<div class="register-section" id="profile-details-section" style="display: none;">
 
 					<h4><?php _e( 'Profile Details', 'buddypress' ); ?></h4>
 
 					<?php /* Use the profile field loop to render input fields for the 'base' profile field group */ ?>
 					<?php if ( bp_is_active( 'xprofile' ) ) : if ( bp_has_profile( array( 'profile_group_id' => 1, 'fetch_field_data' => false ) ) ) : while ( bp_profile_groups() ) : bp_the_profile_group(); ?>
-
-					<?php while ( bp_profile_fields() ) : bp_the_profile_field(); ?>
+					
+					<?php // TODO: Придумать как обойти без хака ?>
+					<input  type="hidden" id="field_1" name="field_1" value="_" aria-required="false" type="text">
+					<script>
+					jQuery(document).ready(function($) {
+						$("#signup_username").change(function(event) {
+							$("#field_1").val( $("#signup_username").val() );
+						});
+					});
+					</script>
+					
+					<?php while ( bp_profile_fields() && true && false ) : bp_the_profile_field(); ?>
 
 						<div<?php bp_field_css_class( 'editfield' ); ?>>
 

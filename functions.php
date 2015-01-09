@@ -5,7 +5,7 @@
  * @package Forum
  */
 	
-define( 'FORUM_VERSION', '1.0.0');
+define( 'FORUM_VERSION', '1.1.0');
 define( 'FORUM_URI', get_stylesheet_directory_uri() );
 define( 'FORUM_DIR', get_template_directory() );
 
@@ -70,6 +70,7 @@ add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
 function remove_admin_bar_links() {
     global $wp_admin_bar;
     $wp_admin_bar->remove_menu('wp-logo');
+    $wp_admin_bar->remove_menu('user-actions');
 
     if ( !is_admin() ) {
     	$wp_admin_bar->remove_menu('site-name');
@@ -126,3 +127,38 @@ function forum_get_button_create_topic() {
 	return $btn;
 }
 
+/**
+ * Убрает лого WP со страницы входа
+ */
+function forum_remove_login_logo(){
+	echo '<style type="text/css">
+	h1 a { display: none !important; }
+	</style>';
+}
+add_action('login_head', 'forum_remove_login_logo');
+
+/**
+ * Добавляет кнопку "выйти" в админбар
+ */
+add_action( 'admin_bar_menu', 'forum_toolbar_link', 999 );
+function forum_toolbar_link( $wp_admin_bar ) {
+	if ( is_user_logged_in() ) {
+		$args = array(
+			'id'    => 'forum_logout',
+			'title' => 'Выйти',
+			'href'  => wp_logout_url( get_permalink() ),
+			'parent' => 'my-account-buddypress',
+			'meta'  => array( 'class' => 'my-toolbar-page' )
+		);
+		$wp_admin_bar->add_node( $args );
+	}
+}
+
+/**
+ * Ссылка профиль в админке изменяется 
+ * на ссылку на профиль в  bbpress
+ */
+add_filter( 'edit_profile_url', 'forum_edit_profile_url', 10, 2 );
+function forum_edit_profile_url( $url, $user_id ) {
+	return bbp_get_user_profile_url( $user_id );
+}
