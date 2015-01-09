@@ -28,6 +28,15 @@ function child_theme_enqueue_scripts () {
 
 
 		// Forum scripts
+		/*
+		wp_deregister_script( 'jquery' );
+    	wp_register_script( 'jquery', 'http://yastatic.net/jquery/1.11.1/jquery.js', '', '', true);
+    	wp_enqueue_script( 'jquery' );		
+		*/
+		wp_enqueue_script( 'jquery.scrollTo', FORUM_URI . '/assets/vendor/jquery.scrollTo/jquery.scrollTo.js', array( 'jquery' ), '', true);
+    	wp_enqueue_script( 'jquery.localScroll', FORUM_URI . '/assets/vendor/jquery.localScroll/jquery.localScroll.js', array( 'jquery', 'jquery.scrollTo' ), '', true);
+    	wp_enqueue_script( 'forum_scripts', FORUM_URI . '/assets/js/scripts.js', array( 'jquery' ), '', true);
+    
 	}
 }
 
@@ -101,5 +110,17 @@ function css_class_logged_no($classes) {
 	}
 
 	return $classes;
+}
+
+/**
+ * Кнопка "Создать новую тему"
+ */
+add_action( 'forum_button_create_topic', 'forum_button_create_topic' );
+function forum_button_create_topic() {
+	echo forum_get_button_create_topic();
+}
+function forum_get_button_create_topic() {
+	$btn = "<a class='btn btn-create-topic' href='#new-post' title=''>".sprintf( __( 'Create New Topic in &ldquo;%s&rdquo;', 'bbpress' ), bbp_get_forum_title() )."</a>";
+	return $btn;
 }
 
