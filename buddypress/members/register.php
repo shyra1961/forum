@@ -65,6 +65,13 @@
 					
 					<?php // TODO: Придумать как обойти без хака ?>
 					<input  type="hidden" id="field_1" name="field_1" value="_" aria-required="false" type="text">
+					<script>
+					jQuery(document).ready(function($) {
+						$("#signup_username").change(function(event) {
+							$("#field_1").val( $("#signup_username").val() );
+						});
+					});
+					</script>
 					
 					<?php while ( bp_profile_fields() && true && false ) : bp_the_profile_field(); ?>
 
