@@ -5,7 +5,7 @@
  * @package Forum
  */
 	
-define( 'FORUM_VERSION', '1.0.0');
+define( 'FORUM_VERSION', '1.1.0');
 define( 'FORUM_URI', get_stylesheet_directory_uri() );
 define( 'FORUM_DIR', get_template_directory() );
 
