@@ -13,5 +13,5 @@
   *  [FunCaptcha - Anti-Spam CAPTCHA](https://wordpress.org/plugins/funcaptcha/)
 
 ## Примечание
-Папку buddypress нужно скопировать в тему родительскую тему, иначе всё изменения в код buddypress не будут работать*
+Папку buddypress нужно скопировать в родительскую тему, иначе всё изменения в код buddypress не будут работать*
 * - [Theme Compatibility & Template Files](https://codex.buddypress.org/themes/theme-compatibility-1-7/a-quick-look-at-1-7-theme-compatibility/)
